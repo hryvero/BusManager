@@ -1,0 +1,13 @@
+GET http://localhost:3001/api/
+
+###
+
+POST  http://localhost:3001/api/
+Content-Type: application/json
+
+{
+      "name":"BusAir",
+      "phoneNumber": "0964716736",
+      "direction": "Kyiv-Lviv"
+
+}
