@@ -1,13 +1,32 @@
 GET http://localhost:3001/api/
 
 ###
+GET http://localhost:3001/api/640dfaba93d03b6a45f8ee85
+
+###
 
 POST  http://localhost:3001/api/
 Content-Type: application/json
 
 {
-      "name":"BusAir",
-      "phoneNumber": "0964716736",
-      "direction": "Kyiv-Lviv"
-
+      "name":"BusIk",
+      "date":"12.10.2023 10:00",
+      "phoneNumber": "0645746532",
+      "directionOut": "Kyiv",
+      "directionIn": "Lviv"
 }
+####
+
+PUT http://localhost:3001/api/640e0c0594ac63481f9602ee
+Content-Type: application/json
+
+{
+      "name": "Abrakadabra",
+      "date":"12.10.2023 10:00",
+      "phoneNumber": "7945745532",
+      "directionOut": "Kyiv",
+      "directionIn": "Lviv"
+}
+###
+DELETE  http://localhost:3001/api/640cfa0661263fa1c3daa5b7
+

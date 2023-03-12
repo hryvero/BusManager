@@ -1,10 +1,12 @@
 const { Schema, model } = require("mongoose");
 
 
-let d = new Date,
-dformat = [d.toLocaleDateString().split('T')[0]]+ " "+
- [d.getHours(),
-  d.getMinutes()].join(':');
+let dformat = new Date;
+dformat = [dformat.toLocaleDateString().split('T')[0]]+ ' '+
+[
+  dformat.getHours() < 10 ? "0" + dformat.getHours() : dformat.getHours(),
+  dformat.getMinutes() < 10 ? "0" + dformat.getMinutes() : dformat.getMinutes()
+].join(':');
 
 const BusSchedule = new Schema(
       {

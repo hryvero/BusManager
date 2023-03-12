@@ -1,39 +1,21 @@
 const { Router } = require("express");
 
-
-const BusSchedule=require("../models/Bus")
-
-
-
 const busRouter = Router();
+const controller = require('../controllers/bus.controller');
 
-busRouter.get("/", async(req, res)=>{
-      const schedule= await BusSchedule.find();
 
-      res.json(schedule)
-} )
+busRouter.get('/', controller.getAllBuses);
 
-busRouter.post("/", async(req, res)=>{
-      try {
-            // const todo = new BusSchedule({
-            //       name: req.body.name
-            // })
-      
-            // todo.save();
-      
-            // res.json(todo);
-            const createBus= await BusSchedule.create(req.body);
+busRouter.get('/:busId', controller.getBusById);
 
-            console.log(req.body.name)
+busRouter.post('/', controller.createBus);
 
-            // res.setHeader("Content-Type", "application/json");
-            res.json(createBus); 
-          } catch (e) {
-            console.log(e)
-          }
-    
-} )
+busRouter.put('/:busId', controller.updateBus);
+
+busRouter.delete('/:busId', controller.deleteBus);
 
 
 module.exports = busRouter;
+
+
 
