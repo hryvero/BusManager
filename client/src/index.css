@@ -40,11 +40,15 @@ h4 {
 
 .todo {
 	position: relative;
+	display: flex;
+
+	flex-direction: column;
+	row-gap: 20px;
 	background-color: var(--dark);
 	padding: 16px;
 	border-radius: 16px;
 	display: flex;
-	align-items: center;
+	align-items: self-start;
 	transition: 0.5s;
 	cursor: pointer;
 	margin-bottom: 16px;
@@ -55,6 +59,7 @@ h4 {
 }
 
 .todo .checkbox {
+	
 	width: 20px;
 	height: 20px;
 	margin-right: 16px;
@@ -75,6 +80,11 @@ h4 {
 
 .todo.is-complete .text {
 	text-decoration: line-through;
+	color: #AF1E2D;
+}
+.todo.is-not-complete .text {
+
+	color:#FFF
 }
 
 .todo .delete-todo {

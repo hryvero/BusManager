@@ -24,8 +24,8 @@ const BusSchedule = new Schema(
           default: false
         },
         date: { type: String, default:dformat  },
-        directionOut: { type: String, required: true },
-        directionIn: { type: String, required: true },
+        directionStart: { type: String, required: true },
+        directionFinish: { type: String, required: true },
 
       },
       { timestamps: true }
