@@ -4,21 +4,29 @@ const BusSchedule = require("../models/Bus");
 module.exports = {
   getAllBuses: async (req, res, next) => {
     try {
-      const { limit = 20, page = 1 } = req.query;
-      const skip = (page - 1) * limit;
-      const buses = await BusSchedule.find().limit(limit).skip(skip);
-      const count = await BusSchedule.count({});
+      // const { limit = 20, page = 1 } = req.query;
+      // const skip = (page - 1) * limit;
+      const buses = await BusSchedule.find().limit(20);
+    
 
       res.json({
-        page,
-        perPage: limit,
-        count,
         data: buses,
       });
     } catch (e) {
       next(e);
     }
   },
+
+  getComplete: async (req,res)=>{
+    
+  const bus = await BusSchedule.findById(req.params.id);
+
+	bus.complete = !bus.complete;
+  bus.save();
+
+    res.json(bus);
+  },
+	
 
   getBusById: async (req, res, next) => {
     try {

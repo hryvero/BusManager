@@ -5,13 +5,18 @@ GET http://localhost:3001/api/640dfaba93d03b6a45f8ee85
 
 ###
 
+PUT  http://localhost:3001/api/complete/640f3a63d830e982dc6da8e5
+
+###
+
+
 POST  http://localhost:3001/api/
 Content-Type: application/json
 
 {
       "name":"BusIk",
       "date":"12.10.2023 10:00",
-      "phoneNumber": "0645746532",
+      "phoneNumber": "09900746532",
       "directionOut": "Kyiv",
       "directionIn": "Lviv"
 }

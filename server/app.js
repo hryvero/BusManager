@@ -13,18 +13,21 @@ const app = express();
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors());
+app.use(cors({origin: '*'}));
+// res.header("Access-Control-Allow-Origin", "*")
 
+mongoose.connect(MONGO_URL,
+ { useNewUrlParser: true, useUnifiedTopology: true }).then((value) => {
+  console.log("Connection success");
+
+});
 app.use('/api', busRouter);
 app.use('*', notFoundError);
 app.use(_mainErrorHandler);
 
 
 
-mongoose.connect(MONGO_URL,
- { useNewUrlParser: true, useUnifiedTopology: true }).then((value) => {
-  console.log("Connection success");
-});
+
 
 app.listen(PORT, () => {
   console.log(`Started on ${PORT} port`);

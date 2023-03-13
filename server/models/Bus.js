@@ -19,6 +19,10 @@ const BusSchedule = new Schema(
           unique: true,
           required: true,
         },
+        complete: {
+          type: Boolean,
+          default: false
+        },
         date: { type: String, default:dformat  },
         directionOut: { type: String, required: true },
         directionIn: { type: String, required: true },
