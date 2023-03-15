@@ -1,12 +1,13 @@
 const express = require("express");
-const http = require("http");
 const mongoose = require("mongoose");
+const swagger = require('swagger-ui-express');
 const cors = require('cors');
 
 
 const busRouter =require("./routes/routes")
 const {MONGO_URL, PORT}= require("./configs/config")
 const { _mainErrorHandler, notFoundError } = require("./errors/error.handler");
+const swaggerJson = require('./swagger.json')
 
 
 const app = express();
@@ -23,6 +24,7 @@ async function init () {
     console.log("Connection success");
   });
   app.use('/api', busRouter);
+  app.use('/api-docs', swagger.serve, swagger.setup(swaggerJson));
   app.use('*', notFoundError);
   app.use(_mainErrorHandler);
 

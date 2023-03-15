@@ -17,6 +17,7 @@
     "express": "^4.18.2",
     "lint": "^0.8.19",
     "mongoose": "^7.0.1",
-    "nodemon": "^2.0.21"
+    "nodemon": "^2.0.21",
+    "swagger-ui-express": "^4.6.2"
   }
 }

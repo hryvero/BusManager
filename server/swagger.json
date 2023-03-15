@@ -1,0 +1,306 @@
+{
+      "swagger": "2.0",
+      "info": {
+        "title": "MERN project",
+        "version": "1.29.58",
+        "description": "Bus scedule app"
+      },
+      "paths": {
+        "/api/": {
+          "get": {
+            "description": "Get all buses",
+            "tags": [
+              "BusSchedule"
+            ],
+            "operationId": "getAllBuses",
+            "responses": {
+              "200": {
+                "description": "Return all buses from DB",
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/models/BusSchedule"
+                  }
+                }
+              },
+              "400": {
+                "description": "Error",
+                "schema": {
+                  "$ref": "#/models/BusSchedule"
+                }
+              }
+            }
+          },
+
+
+          "post": {
+            "description": "Create new bus",
+            "operationId": "createNewBus",
+            "tags": [
+              "BusSchedule"
+            ],
+            "parameters": [
+              {
+                "type": "string",
+                "name": "name",
+                "in": "formData",
+                "default": "BusAir",
+                "required": true
+              },
+              {
+                "type": "string",
+                "name": "phoneNumber",
+                "in": "formData",
+                "default": "0965454002",
+                "required": true
+              },
+              {
+                  "type": "boolean",
+                  "name": "complete",
+                  "in": "formData",
+                  "default": "false",
+                  "required": false
+                },
+                {
+                  "type": "string",
+                  "name": "date",
+                  "in": "formData",
+                  "default": "22.10.2023",
+                  "required": false
+                },
+                {
+                  "type": "string",
+                  "name": "directionStart",
+                  "in": "formData",
+                  "default": "Kyiv",
+                  "required": true
+                },
+                {
+                  "type": "string",
+                  "name": "directionFinish",
+                  "in": "formData",
+                  "default": "Lviv",
+                  "required": true
+                }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/models/BusSchedule"
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Error",
+                "schema": {
+                  "$ref": "#/models/errorSchema"
+                }
+              }
+            }
+          }
+        },
+        
+         "/api/{id}": {
+
+            "delete": {
+              "tags": [
+                "BusSchedule"
+              ],
+              "description": "Removes bus from database",
+              "produces": "application/json",
+              "parameters": [
+                {
+                  "in": "path",
+                  "name": "id",
+                  "description": "Id of the bus",
+                  "required": true,
+                  "schema": {
+                      "type": "integer"
+                  }
+              }],
+              "responses": {
+                "200": {          
+                  "description": "OK",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "array"
+                      }
+                    }
+                  }
+                
+              },
+            "404":{
+              "description": "Not found"
+            } 
+          }
+        },   
+          
+              "put": {
+                "tags": [
+                  "BusSchedule"
+                ],
+                "description": "Update bus",
+                "produces": "application/json",
+                "parameters": [
+                  {
+                    "in": "path",
+                    "name": "id",
+                    "description": "Id of the bus",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }],
+                "responses": {
+                  "200": {          
+                    "description": "OK",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "array"
+                        }
+                      }
+                    }
+                  
+                },
+              "404":{
+                "description": "Not found"
+              }
+            }
+          },
+          "get": {
+            "tags": [
+              "BusSchedule"
+            ],
+            "description": "Get bus by id",
+            "produces": "application/json",
+            "parameters": [
+              {
+                "in": "path",
+                "name": "id",
+                "description": "Id of the bus",
+                "required": true,
+                "schema": {
+                    "type": "integer"
+                }
+            }],
+            "responses": {
+              "200": {          
+                "description": "OK",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "array"
+                    }
+                  }
+                }
+              
+            },
+          "404":{
+            "description": "Not found"
+          }
+        }
+      }
+    }
+  ,
+  "/api/complete/{id}": {
+
+    "put": {
+      "tags": [
+        "BusSchedule | complete"
+      ],
+      "description": "Change complete value to the opposite",
+      "produces": "application/json",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "description": "Id of the bus",
+          "required": true,
+          "schema": {
+              "type": "integer"
+          }
+      }],
+      "responses": {
+        "200": {          
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array"
+              }
+            }
+          }
+        
+      },
+    "404":{
+      "description": "Not found"
+     } 
+   }
+  }
+ },
+
+      "models": {
+        "BusSchedule": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Driver Name",
+              "default": "Vasyl",
+              "required":true
+            },
+            "phoneNumber": {
+              "type": "string",
+              "example": "029112002212",
+              "unique": true,
+              "required":true
+            },
+            "date": {
+              "type": "string",
+              "example": "12.02.2023 10:00",
+              "default": "12.02.2023 10:00",
+              "required":true
+            },
+            "direvtionStart": {
+              "type": "string",
+              "example": "Kyiv",
+              "default": "Kyiv",
+              "required":true
+            },
+            "directionFinish": {
+              "type": "string",
+              "example": "Lviv",
+              "default": "Lviv",
+              "required":true
+            }
+          }
+        },
+        "errorSchema": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string",
+              "example": "Duplicate keys"
+            },
+            "data": {
+              "type": "object"
+            },
+            "customCode": {
+              "description": "Serveral error",
+              "type": "number",
+              "example": 500
+            }
+          }
+        }
+      }
+    }
+  }
+    
+  
+
